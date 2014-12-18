@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Template xmlns="http://wirecloud.conwet.fi.upm.es/ns/template#">
+
+    <Catalog.ResourceDescription>
+        <Vendor>CoNWeT</Vendor>
+        <Name>layer-selector</Name>
+        <DisplayName>Layer Selector</DisplayName>
+        <Version>0.1</Version>
+        <Author>billescas</Author>
+        <Mail>billescas@conwet.com</Mail>
+        <Description> Widget for selecting layers in Map Viewers.</Description>
+        <ImageURI>img/wms_widget.png</ImageURI>
+        <iPhoneImageURI>img/wms_widget.png</iPhoneImageURI>
+        <WikiURI>http://hercules.ls.fi.upm.es/public/conwet/ogf.html#wms-widget</WikiURI>
+    </Catalog.ResourceDescription>
+    
+    <Platform.StateProperties>   
+        <Property name="layersData" type="text" label="State"/>
+    </Platform.StateProperties>
+
+    <Platform.Wiring>
+
+        <OutputEndpoint name="layerInfoOutput" type="text" label="Layer info" friendcode="layerInfo"/>
+
+    </Platform.Wiring>
+
+    <Platform.Link>        
+        <XHTML content-type="application/xhtml+xml" use-platform-style="true" href="index.html"/>
+    </Platform.Link>
+
+    <Platform.Rendering width="4" height="30"/>
+
+</Template>

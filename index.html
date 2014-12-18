@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+        <title>Genasys</title>
+
+        <!-- Libraries -->
+        <script type="text/javascript" src="js/lib/Prototype-1.7/prototype.js"></script>
+        <script type="text/javascript" src="js/lib/OpenLayers-2.13.1/one-file/OpenLayers.js"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+
+        <!-- Javascript Code -->
+        <script type="text/javascript" src="js/LayerSelector.js"></script>
+        <script type="text/javascript" src="js/InitialLayers.js"></script>
+        <script type="text/javascript" src="js/conwet/map/WmsLayer.js"></script>
+        <script type="text/javascript" src="js/conwet/map/WmtsLayer.js"></script>
+        <script type="text/javascript" src="js/conwet/map/OsmLayer.js"></script>
+        <script type="text/javascript" src="js/conwet/map/GoogleLayer.js"></script>        
+        <script type="text/javascript" src="js/conwet/map/WmsService.js"></script>
+        <script type="text/javascript" src="js/conwet/map/WmscService.js"></script>
+        <script type="text/javascript" src="js/conwet/map/WmtsService.js"></script>
+        <script type="text/javascript" src="js/conwet/map/WmsManager.js"></script>        
+        <script type="text/javascript" src="js/conwet/Gadget.js"></script>
+
+        <!-- CSS Style -->
+        <link rel="stylesheet" type="text/css" href="css/message.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/layerSelector.css"></link>       
+
+    </head>
+    <body onload="javascript:init();">
+        <!-- Initial HTML content -->
+        <div id="shadow"></div>
+        <div id="content">
+            <div id="addLayerContainer">
+                <button id="close" class="btn-danger styled_button btn-mini"><span class="icon-remove" /></button>                
+                <div class="formheader">
+                    <span>Add Layer</span>                                          
+                </div>
+                <div>
+                    <label>URL</label>
+                    <input id="urlInput" class="se-text-field" type="text"/>
+                    <button type="button" class ="btn-primary styled_button btn-small" id="getLayers">Get Layers</button>
+                </div>
+                <div id = "addLayersSelector"></div>
+                <div id = "addLayersButtonContainer" style="display:none"></div>
+            </div>
+            <div id="selector">
+                <div class="subselector top">
+                    <span class="title">Base Layers</span>
+                    <div id ="baseLayers"></div>
+                    <div id ="addBaseLayersButtonContainer"></div>
+                </div>
+                <div class="subselector">
+                    <span class="title">Overlays</span>                    
+                    <div id ="overlays"></div>
+                    <div id ="addOverlaysButtonContainer"></div>
+                </div>     
+            </div>
+        </div>        
+    </body>
+</html>

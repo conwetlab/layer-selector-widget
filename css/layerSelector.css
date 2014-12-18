@@ -1,0 +1,141 @@
+
+input[type="checkbox"]{
+	float:none;
+}
+
+body{
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	margin:0;
+}
+
+.addButton{
+	margin-top: 5px;
+}
+
+#content{
+	width: 100%;
+	height: 100%;
+}
+
+.title{
+	font-weight: bold;
+	color: rgba(0,0,0,0.4);
+	margin-bottom: 10px;
+}
+
+.subselector.top{
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+.subselector{
+	text-align: center;
+	height: 45%;
+}
+
+#baseLayers, #overlays{
+	height: calc(100% - 60px);
+	overflow: auto;
+	text-align: left;
+}
+
+#overlays{
+	max-height: calc(100% - 50px);
+	overflow:auto;
+	text-align: left;
+}
+
+#addLayerContainer{
+	display: none;
+	background-color: white;
+	position: absolute;
+	z-index: 4;
+	width: 85%;
+	min-width: 270px;
+	height: 83%;
+	margin: 4%;
+	border: 1px solid rgba(0,0,0,0.7);
+	border-radius: 5px;
+	padding: 10px;
+	padding-top: 5px;
+}
+
+#shadow{
+	display:none;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	z-index: 1;
+}
+
+.formheader{
+	text-align: center;
+	height: 25px;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: rgba(0,0,0,0.4);
+}
+
+#selector{
+	padding: 8px;
+	height: calc(100% - 16px);
+	width: calc(100% - 16px);
+	position: absolute;
+}
+
+#close{
+	position: absolute;position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+#addLayersSelector{
+	overflow: auto;
+	height: calc(100% - 96px);
+}
+
+#addLayersButtonContainer{
+	height: 10%;
+}
+
+.se-select{
+	width: 8.8em;
+	height: 24px;
+	padding: 1px 6px;
+	font-size: 12px;
+	float:right;
+	clear:both;
+	margin:0;
+}
+
+.se-select-arrow{
+	top:2px;
+}
+
+.baseLayerSelect{
+	display: inline-block;
+}
+
+.addBaseLayerDiv{
+	height: 35px;
+}
+
+#getLayers{
+	top: -2px;
+}
+
+#urlInput{
+	height: 24px;
+	margin:0;
+	margin-bottom: 4px;
+	width: calc(100% - 130px);
+}
+
+#addBaseLayersButtonContainer, #addOverlaysButtonContainer{
+	margin-top: 10px;
+	text-align: left;
+}
