@@ -1,40 +1,32 @@
-var initialLayers ={
-
-    "http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx_Catastro": {
-        id: "http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx_Catastro",
-        isBaseLayer: false,
-        name: 'Catastro',
-        version: "1.1.1",
-        url: 'http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx',
-        service: "WMS",
-        projection: "EPSG:4320"
-
+var initialLayers = {
+    "https://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx#Catastro": {
+        type: "ImageWMS",
+        url: 'https://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx',
+        id: 'Catastro',
+        title: 'Catastro',
+        params: {
+            VERSION: "1.1.1",
+            PROJECTION: "EPSG:23030"
+        }
     },
-    "http://www.cartociudad.es/wms/CARTOCIUDAD/CARTOCIUDAD_DivisionTerritorial": {
-        id: "http://www.cartociudad.es/wms/CARTOCIUDAD/CARTOCIUDAD_DivisionTerritorial",
-        isBaseLayer: false,
-        name: 'DivisionTerritorial',
-        version: "1.1.1",
+    "http://www.cartociudad.es/wms/CARTOCIUDAD/CARTOCIUDAD#DivisionTerritorial": {
+        type: "ImageWMS",
         url: 'http://www.cartociudad.es/wms/CARTOCIUDAD/CARTOCIUDAD',
-        service: "WMS",
-        projection: "EPSG:4320"
-    }/*,
-    "http://www.ign.es/wms-c/mapa-raster_Cartografía raster": {
-        id: "http://www.ign.es/wms-c/mapa-raster_Cartografía raster",
-        isBaseLayer: false,
-        name: 'Cartografía raster', //MTN
-        version: "1.1.1",
-        url: 'http://www.ign.es/wms-c/mapa-raster',
-        service: "WMSC",
-        projection: "EPSG:4320"
+        id: 'Callejero',
+        title: 'Cartociudad - callejero',
+        params: {
+            VERSION: "1.3.0",
+            PROJECTION: "EPSG:23030"
+        }
     },
-    "http://www.cartociudad.es/wmts/CARTOCIUDAD/CARTOCIUDAD_CartoCiudad WMTS": {
-        id: "http://www.cartociudad.es/wmts/CARTOCIUDAD/CARTOCIUDAD_CartoCiudad WMTS",
-        isBaseLayer: false,
-        name: 'CartoCiudad WMTS',
-        version: "1.1.1",
-        url: 'http://www.cartociudad.es/wmts/CARTOCIUDAD/CARTOCIUDAD',
-        service: "WMTS"
-    }*/
-
+    "http://wms.magrama.es/sig/Alimentacion/CDFrutas/wms.aspx#PF.ProductionSite": {
+        type: "ImageWMS",
+        url: "http://wms.magrama.es/sig/Alimentacion/CDFrutas/wms.aspx",
+        id: "PF.ProductionSite",
+        title: "Zonas de Calidad Diferenciada: Frutas",
+        params: {
+            VERSION: "1.3.0",
+            PROJECTION: "EPSG:23030"
+        }
+    }
 };

@@ -1,20 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="layer-selector" version="0.1">
-  <details>
-    <title>Layer Selector</title>
-    <email>billescas@conwet.com</email>
-    <image>img/wms_widget.png</image>
-    <smartphoneimage>img/wms_widget.png</smartphoneimage>
-    <description> Widget for selecting layers in Map Viewers.</description>
-    <doc>http://hercules.ls.fi.upm.es/public/conwet/ogf.html#wms-widget</doc>
-    <authors>billescas</authors>
-  </details>
-  <persistentvariables>
-    <variable name="layersData" type="text" label="State"/>
-  </persistentvariables>
-  <wiring>
-    <outputendpoint name="layerInfoOutput" type="text" label="Layer info" friendcode="layerInfo"/>
-  </wiring>
-  <contents src="index.html" contenttype="application/xhtml+xml" useplatformstyle="true"/>
-  <rendering height="30" width="4"/>
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="layer-selector" version="0.4">
+    <details>
+        <title>Layer Selector</title>
+        <email>wirecloud@conwet.com</email>
+        <image>img/wms_widget.png</image>
+        <smartphoneimage>img/wms_widget.png</smartphoneimage>
+        <description>Widget for selecting layers in Map Viewers.</description>
+        <authors>Borja Illescas &lt;billescas@conwet.com&gt;</authors>
+    </details>
+    <persistentvariables>
+        <variable name="layersData" type="text" label="State"/>
+    </persistentvariables>
+    <wiring>
+        <outputendpoint name="layerInfoOutput" type="text" label="Layer info" friendcode="layerInfo"/>
+    </wiring>
+    <contents src="index.html" contenttype="application/xhtml+xml" useplatformstyle="true"/>
+    <rendering height="400px" width="250px"/>
 </widget>

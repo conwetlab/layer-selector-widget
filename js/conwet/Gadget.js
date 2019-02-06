@@ -31,16 +31,15 @@ conwet.Gadget = Class.create({
     initialize: function() {
         this.init = true;
 
-        
         this.wmsManager = new conwet.map.WmsManager();
 
         this.layersData = initialLayers;
         var layersDataPreference = MashupPlatform.widget.getVariable("layersData");
 
-        if (layersDataPreference.get() != "") 
+        if (layersDataPreference.get() != "")
             this.layersData = JSON.parse(layersDataPreference.get());
 
-        var addButton = new StyledElements.StyledButton({text:' Add Layers', 'class': 'btn-success btn-small', iconClass: 'icon-plus'});        
+        var addButton = new StyledElements.Button({text:'Add Layers', 'class': 'btn-success btn-small', iconClass: 'icon-plus'});
         addButton.addEventListener("click", function(){
             this.hideAddLayerDialog();
             this.draw();
@@ -54,18 +53,18 @@ conwet.Gadget = Class.create({
             this.hideAddLayerDialog();
         }.bind(this));
 
-        var addBaseLayerButton = new StyledElements.StyledButton({text:' Add Base Layers', 'class': 'btn-primary btn-small addButton',iconClass: 'icon-plus'});        
+        var addBaseLayerButton = new StyledElements.Button({text:'Add Base Layers', 'class': 'btn-primary btn-small addButton',iconClass: 'icon-plus'});
         addBaseLayerButton.addEventListener("click",function(){
             this.showAddLayerDialog(true);
         }.bind(this));
         addBaseLayerButton.insertInto(document.getElementById("addBaseLayersButtonContainer"));
 
-        var addOverlayButton = new StyledElements.StyledButton({text:' Add Overlays', 'class': 'btn-primary btn-small addButton', iconClass: 'icon-plus'});            
+        var addOverlayButton = new StyledElements.Button({text:'Add Overlays', 'class': 'btn-primary btn-small addButton', iconClass: 'icon-plus'});
         addOverlayButton.addEventListener("click", function(){
             this.showAddLayerDialog(false);
         }.bind(this));
         addOverlayButton.insertInto(document.getElementById("addOverlaysButtonContainer"));
-        
+
     },
     saveLayersData: function(){
         MashupPlatform.widget.getVariable("layersData").set(JSON.stringify(this.layersData));
@@ -76,7 +75,7 @@ conwet.Gadget = Class.create({
 
         baseLayersDiv.innerHTML = "";
         overlaysDiv.innerHTML = "";
-     
+
         this.addGoogleBaseLayers(baseLayersDiv);
         this.loadSavedLayers();
 
@@ -93,15 +92,15 @@ conwet.Gadget = Class.create({
         var span = document.createElement("span");
 
         span.innerHTML = title;
-        
+
         inputElement.id = id;
         inputElement.name = "baseLayer";
         inputElement.type = "radio";
         inputElement.class = "radioButtonElement";
-        
+
         if (callback != null)
             inputElement.observe("mousedown", callback);
-        
+
         inputDiv.appendChild(inputElement);
         inputDiv.appendChild(span);
         return inputDiv;
@@ -113,11 +112,11 @@ conwet.Gadget = Class.create({
         var span = document.createElement("span");
 
         span.innerHTML = title;
-        
+
         inputElement.id = id;
         inputElement.type = "checkbox";
         inputElement.class = "checkBoxElement";
-        
+
         if (uncheckedCallback != null && checkedCallback != null){
             inputElement.observe("mousedown", function(){
                 if (inputElement.checked){
@@ -139,24 +138,24 @@ conwet.Gadget = Class.create({
             data: {id:""}
         }
 
-        var googleStandard = this.createInputRadioButton("googleStandard", "Google Standard",function(){
-            layerData.data.id = "GOOGLE_STANDARD";            
-            this.sendLayerData(layerData);
-        }.bind(this));
+        var layers = [
+            this.createInputRadioButton("WIKIMEDIA", "Wikimedia", function () {
+                layerData.data.id = "WIKIMEDIA";
+                this.sendLayerData(layerData);
+            }.bind(this)),
+            this.createInputRadioButton("CARTODB_LIGHT", "CartoDB Light", function () {
+                layerData.data.id = "CARTODB_LIGHT";
+                this.sendLayerData(layerData);
+            }.bind(this)),
+            this.createInputRadioButton("OSM", "Open Street Map", function () {
+                layerData.data.id = "OSM";
+                this.sendLayerData(layerData);
+            }.bind(this)),
+        ];
 
-        var googleSatellite = this.createInputRadioButton("googleSatellite", "Google Satellite", function(){
-            layerData.data.id = "GOOGLE_SATELLITE";            
-            this.sendLayerData(layerData);
-        }.bind(this));
-
-        var googleHybrid = this.createInputRadioButton("googleHybrid", "Google Hybrid", function(){
-            layerData.data.id = "GOOGLE_HYBRID";            
-            this.sendLayerData(layerData);
-        }.bind(this));
-
-        containerDiv.appendChild(googleStandard);
-        containerDiv.appendChild(googleSatellite);
-        containerDiv.appendChild(googleHybrid);
+        layers.forEach((radiobutton) => {
+            containerDiv.appendChild(radiobutton);
+        });
     },
     createBaseLayerInput: function(layerData, containerDiv){
         var title = layerData.name + " (" + layerData.projection + ")";
@@ -175,7 +174,7 @@ conwet.Gadget = Class.create({
     },
 
     createOverlayInput: function(layerData, containerDiv){
-        var overlayInput = this.createInputCheckBox(layerData.id, layerData.name,
+        var overlayInput = this.createInputCheckBox(layerData.id, layerData.title != null ? layerData.title : layerData.name,
             function(){
                 var sendInfo = {
                     action: "addLayer",
@@ -224,7 +223,7 @@ conwet.Gadget = Class.create({
         var addLayersSelector = document.getElementById("addLayersSelector");
         addLayersSelector.innerHTML="";
         document.getElementById("addLayersButtonContainer").style.display="none";
-        
+
         var getLayersButton = document.getElementById("getLayers");
         getLayersButton.onclick = function(){
             addLayersSelector.innerHTML="";
@@ -240,14 +239,14 @@ conwet.Gadget = Class.create({
         shadow.style.display = 'none';
     },
     drawLayersToSelect: function(baseURL, type, isBaseLayer){
-        
+
         var service = this.wmsManager.getService(baseURL);
         document.getElementById("addLayersButtonContainer").style.display="block";
 
-        var layers = service.getLayers();        
-        
+        var layers = service.getLayers();
+
         for (var i = 0; i < layers.length; i++) {
-            if (layers[i].layer.name != null)                   
+            if (layers[i].layer.name != null)
                 this.createAddLayerDiv(layers[i], isBaseLayer, this.layersData, baseURL, type);
         }
 
@@ -260,11 +259,11 @@ conwet.Gadget = Class.create({
             url: baseURL,
             name: layer.layer.name,
             version: "1.3.0",
-            service: type,            
+            service: type,
             isBaseLayer: isBaseLayer,
             projection: layer.projections[0]
         }
-        
+
         layerData.id = isBaseLayer ? layerData.id +"_bl" : layerData.id;
         var checkBoxElement = this.createInputCheckBox(null, layerData.name,
             function(){
@@ -274,7 +273,7 @@ conwet.Gadget = Class.create({
                 delete layersToAdd[layerData.id];
             }
         );
-        
+
         addLayerElementDiv.appendChild(checkBoxElement);
         if (isBaseLayer){
             var projSelect = new StyledElements.StyledSelect();
@@ -286,11 +285,11 @@ conwet.Gadget = Class.create({
                     projections.push({label: layer.projections[i], value: layer.projections[i]});
             }
             projSelect.addEntries(projections);
-            
+
             //To get the first valid proj and not EPSG:0
             var selectedProj = projSelect.getValue();
-            layerData.projection = selectedProj;       
-            
+            layerData.projection = selectedProj;
+
             projSelect.addEventListener('change', function(){
                 var selectedProj = projSelect.getValue();
                 layerData.projection = selectedProj;
@@ -327,7 +326,7 @@ conwet.Gadget = Class.create({
             baseURL += "service=WMTSC&version=1.0.0&request=GetCapabilities";
         }else{
             baseURL += "service=WMS&version=1.3.0&request=GetCapabilities";
-        }        
+        }
         MashupPlatform.http.makeRequest(baseURL, {
             method: 'GET',
             onSuccess: function(response) {
@@ -378,7 +377,7 @@ conwet.Gadget = Class.create({
                 } else {
                     service = new conwet.map.WmsService(xml);
                 }
-                this.wmsManager.addService(baseURL, service);            
+                this.wmsManager.addService(baseURL, service);
             } catch (e) {
                 this.showError(_('Error: An error happened parsing the service'));
             }
