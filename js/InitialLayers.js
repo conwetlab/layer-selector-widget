@@ -9,10 +9,10 @@ var initialLayers = {
             PROJECTION: "EPSG:23030"
         }
     },
-    "http://www.cartociudad.es/wms/CARTOCIUDAD/CARTOCIUDAD#DivisionTerritorial": {
+    "http://www.ign.es/wms-inspire/ign-base": {
         type: "ImageWMS",
-        url: 'http://www.cartociudad.es/wms/CARTOCIUDAD/CARTOCIUDAD',
-        id: 'Callejero',
+        url: 'http://www.ign.es/wms-inspire/ign-base',
+        id: 'IGNBaseTodo',
         title: 'Cartociudad - callejero',
         params: {
             VERSION: "1.3.0",
